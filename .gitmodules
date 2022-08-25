@@ -1,0 +1,3 @@
+[submodule "terraform-provider-proxmox"]
+	path = terraform-provider-proxmox
+	url = https://github.com/Marker689/terraform-provider-proxmox
