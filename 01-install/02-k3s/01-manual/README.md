@@ -1,19 +1,15 @@
-Install Master Node:
-
+### Install Master Node:
 ```bash
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" K3S_TOKEN=2b0ae540ceb7a90643cd07d176d6ca2e93cfdaf5 sh -s - server  --cluster-init --disable=traefik -disable=servicelb
 ```
 
-Export Token For Worker Node:
-
+### Install Second and Third Master Node:
 ```bash
-cat /var/lib/rancher/k3s/server/node-token
+curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" K3S_TOKEN=2b0ae540ceb7a90643cd07d176d6ca2e93cfdaf5 sh -s - server  --server https://kube169:6443 --disable=traefik -disable=servicelb
 ```
 
-Install Worker Node:
-
+### Install Workers:
 ```bash
-export MASTER_NODE=192.168.103.11
-export K3S_TOKEN=INSERT_YOUR_TOKEN_HERE
-MASTER_NODE=192.168.103.11 curl -sfL https://get.k3s.io | K3S_URL=https://$MASTER_NODE:6443 K3S_TOKEN=$K3S_TOKEN sh -
+curl -sfL https://get.k3s.io | K3S_URL=https://kube169:6443 K3S_TOKEN=2b0ae540ceb7a90643cd07d176d6ca2e93cfdaf5 sh -
 ```
+---
